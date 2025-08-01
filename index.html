@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vietnam Travel Journal</title>
+
+  <!-- Font imports -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@1,500&family=Raleway:wght@600&family=Sanchez&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-light: #fcf7f3;
+      --beige: #b3c4c8;
+      --text-dark: #021111;
+      --muted: #3e404e;
+      --desktop-width: 1440px;
+      --side-padding: 80px;
+      --shadow: 0 28px 60px -10px rgba(0,0,0,0.15);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Sanchez", sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.35;
+      min-width: 0;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+
+    /* inner constraint helper */
+    .inner {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+
+    /* Hero */
+   .hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow: hidden;
+  text-align: center;
+}
+.hero img {
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 60%);
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 80px 80px;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+.hero-sub {
+  font-family: "Playfair Display", serif;
+  font-size: 0.7rem; /* reduced size */
+  color: #f5f5f5;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.hero-title {
+  font-family: "Crimson Text", serif;
+  font-size: 3.8rem;
+  color: #f5f5f5;
+  margin: 0;
+  line-height: 1.05;
+}
+  
+.intro {
+  background: var(--beige);
+  width: 100%;
+  height: 100vh; /* exact full screen */
+  display: flex;
+}
+.quote-section {
+  background: var(--beige);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+}
+
+/* centering helper */
+.centered {
+  margin: auto; /* centers both vertically and horizontally */
+  max-width: 900px;
+  padding: 0 80px;
+  text-align: center;
+}
+.intro .centered p {
+  font-family: "Sanchez", serif;
+  font-size: 1.0rem;
+  line-height: 1.4;
+  color: var(--text-dark);
+  margin: 0;
+}
+.quote-section {
+  background: var(--beige);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+}
+
+.quote-section .centered {
+  margin: auto;
+  max-width: 900px;
+  padding: 0 80px;
+  text-align: center;
+}
+
+.quote-section .centered p {
+  font-family: "Sanchez", sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+    /* Destinations */
+    .destinations {
+  background: var(--bg-light);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+}
+
+.destination-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 60px;
+  width: 100%;
+}
+
+.section-title {
+  font-size: 3.8rem;
+  font-family: "Sanchez", sans-serif;
+  max-width: 400px;
+  margin: 0;
+  color: var(--text-dark);
+  line-height: 1.1;
+}
+
+.cards {
+  display: flex;
+  gap: 1.2rem; /* reduced gap between images */
+}
+
+.card {
+  position: relative;
+  width: 360px; /* increased width */
+  height: 540px; /* increased height */
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+.card {
+  position: relative;
+  flex: 1 1 400px;
+  max-width: 440px;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.4s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 32px 70px -10px rgba(0, 0, 0, 0.25);
+}
+
+.card img {
+  transition: transform 0.5s ease;
+}
+
+.card:hover img {
+  transform: scale(1.07);
+}
+
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));
+  color: white;
+}
+
+.card-info h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.card-info p {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  line-height: 1.3;
+}
+
+
+    /* Wide images + caption */
+    .wide-sandwich {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--bg-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.full-img {
+  width: 100%;
+  height: 386px;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.sandwich-caption {
+  font-family: "Sanchez", sans-serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--text-dark);
+  text-align: center;
+  max-width: 900px;
+  padding: 1.5rem 2rem;
+}
+/* Initial state */
+
+.full-img {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+
+    /* Gallery */
+    .gallery {
+  background: var(--bg-light);
+  width: 100%;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.gallery-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+.gallery-img {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.gallery-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+
+
+.gallery-caption {
+  font-family: "Sanchez", sans-serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  max-width: 900px;
+  margin: 2rem auto 0;
+  line-height: 1.4;
+}
+footer.ending {
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical center */
+  align-items: center;     /* horizontal center */
+}
+
+footer.ending h2 {
+  margin: 0;
+  font-family: 'Crimson Text', serif;
+  font-size: 2.5rem;
+}
+
+footer.ending p {
+  margin: 8px 0 0;
+  font-size: 1rem;
+}
+
+.cta-button {
+  margin-top: 16px;
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: #ff9900;
+  color: white;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.25s ease;
+}
+
+.cta-button:hover {
+  background-color: #e88e00;
+}
+
+.social-icons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-icons a {
+  display: inline-flex;
+  padding: 8px;  /* bigger tap area */
+  border-radius: 999px;
+  text-decoration: none;
+}
+
+.social-icons a img {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.social-icons a img:hover,
+.social-icons a:focus img {
+  transform: scale(1.2);
+}
+
+/* Responsive tweaks */
+@media (max-width: 1000px) {
+  .hero-title {
+    font-size: 2.8rem;
+  }
+  .section-title {
+    font-size: 3rem;
+  }
+  .cards {
+    flex-direction: column;
+    align-items: center;
+  }
+  .gallery-row {
+    flex-direction: column;
+  }
+  footer.ending {
+    padding: 60px 16px;
+  }
+}
+.between-band {
+  background: #fff;
+  width: 100%;
+  height: 90px; /* adjust thickness as desired */
+}
+
+/* optional: slightly smaller gap on narrow screens */
+@media (max-width: 800px) {
+  .between-band {
+    height: 90px;
+  }
+}
+
+
+
+    /* Footer hero */
+
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+  <img src="IMG_5219.jpg" alt="Vietnam landscape" />
+  <div class="hero-content inner">
+    <h1 class="hero-title">Exploring Vietnam</h1>
+    <div class="hero-sub">A visual journal of moments captured in Vietnam</div>
+  </div>
+</section>
+
+
+
+  <!-- Intro (full-width beige with constrained inner text) -->
+ <section class="intro">
+  <div class="centered">
+    <p>My name is Haifa, and I’m a designer with a deep interest in visual storytelling. During my travels across Vietnam, I’ve been documenting the country’s diverse landscapes, architecture, and cultural moments. This project is a visual journal — an attempt to capture the beauty I’ve encountered through design and thoughtful observation.</p>
+  </div>
+</section>
+  <!-- Destinations -->
+  <section class="destinations">
+  <div class="destination-layout">
+    <h2 class="section-title">Main destination in Vietnam</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="IMG_5401 (1).jpg" alt="Ninh Binh" />
+        <div class="card-info">
+          <h3>Ninh Binh</h3>
+          <p>Explore limestone peaks, boat through rice fields, cycle scenic paths, and hike Hang Múa for panoramic views.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="IMG_6054.jpg" alt="Ha Long Bay" />
+        <div class="card-info">
+          <h3>Ha Long Bay</h3>
+          <p>Recognized as a UNESCO World Heritage Site, Ha Long Bay is renowned for its limestone karsts and tranquil emerald waters, offering a remarkable coastal experience.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  <!-- Wide images + caption -->
+   <section class="wide-sandwich">
+  <img class="full-img" src="IMG_6028 (1).jpg" alt="Wide view top" />
+  <div class="sandwich-caption">Stairway to the Dragon: Hang Mua’s Epic Viewpoint in Ninh Binh</div>
+  <img class="full-img" src="IMG_5317 (1).jpg" alt="Wide view bottom" />
+</section>
+<div class="between-band"></div>
+
+  <!-- Quote block -->
+  <section class="quote-section">
+  <div class="centered">
+    <p>In Vietnam, I found a moment that will never leave me—standing still, embraced by emerald mountains and rivers that whispered softly in the dusk. The air was hushed, the light was drenched in gold, and in that stillness my heart swelled with a joy so pure it felt like a dream.</p>
+  </div>
+</section>
+
+  <!-- Gallery -->
+  <section class="gallery">
+  <div class="gallery-row">
+    <img src="IMG_5813.jpg" alt="Food 1" class="gallery-img" />
+    <img src="IMG_5180-1.jpg" alt="Food 2" class="gallery-img" />
+  </div>
+  <p class="gallery-caption">
+    Lunch on the Halong Bay cruise was more than a meal—it was a celebration of Vietnamese flavors. 
+    Crispy spring rolls, sautéed vegetables, and delicate rolls arrived like art, served with care, 
+    against the calm rhythm of the sea.
+  </p>
+</section>
+
+
+  <!-- Footer hero -->
+ <footer class="ending" style="background-image: url('IMG_6061.jpg');">
+    <h2>Cảm ơn!</h2>
+    <p>Kickstart your Vietnam journey</p>
+    <a href="https://www.makemytrip.com/holidays-international/vietnam-tour-packages.html" class="cta-button">Start Your Adventure</a>
+    <div class="social-icons">
+      <a href="eshahaifa100@gmail.com"><img src="instagram.svg" alt="Instagram"></a>
+      <a href="https://linkedin.com/in/haifa-shaikh"><img src="link.png" alt="LinkedIn"></a>
+    </div>
+  </footer>
+<script>
+
+</script>
+</body>
+</html>
